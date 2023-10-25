@@ -6,7 +6,13 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+import './components/HomeComponent.vue'
+
 const app = createApp(App)
+
+app.component(
+    "HomeComponent",
+)
 
 app.use(createPinia())
 app.use(router)

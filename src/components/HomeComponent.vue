@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <div v-if="store.tab=='home'" id="home"><h1>Home</h1></div>
+    <div id="home"><h1>Home</h1></div>
 </template>
 
 <style>

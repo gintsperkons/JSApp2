@@ -25,8 +25,7 @@ export default {
     <div id="body">
         <NavigationComponent />
       <div id="page" v-if="store.login">
-        <HomeComponent />
-        <AboutMeComponent />
+        <router-view></router-view>
       </div>
     </div>
 </template>

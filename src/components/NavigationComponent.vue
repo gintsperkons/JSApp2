@@ -1,20 +1,7 @@
 <script>
 import { store } from '../../src/store.js'
 export default {
-    methods: {
-        changeTab(tabName, event) {
-            var element = event.target;
-            if (event.target.tagName.trim().toLowerCase() == "p") {
-                element = event.target.parentNode
-            }
-            store.tab = element.id;
-
-            document.querySelectorAll("#nav > a").forEach(
-                (element) => { 
-                    element.className = element.className.replace("active","").trim() 
-                });
-            element.className = element.className.trim() + "active";
-        }
+    methods: {  
     },
     data() {
         return {
@@ -26,21 +13,25 @@ export default {
 
 <template>
     <div id="nav" v-if="store.login">
-        <a id="home" @click="changeTab('home', $event)">
-            <p>Home</p>
-        </a>
-
-        <a id="about" @click="changeTab('about', $event)">
-            <p>About Me</p>
-        </a>
+        <router-link to="/home">
+            <a id="home">
+                <p>Home</p>
+            </a>
+        </router-link>
+        <router-link to="/about">
+            <a id="about">
+                <p>About Me</p>
+            </a>
+        </router-link>
     </div>
 </template>
 
 
 <style>
-#nav{
+#nav {
     padding-top: 20px;
 }
+
 #nav>a {
     width: 310px;
     height: 42px;
@@ -58,7 +49,7 @@ export default {
     line-height: normal;
 }
 
-#nav>a.active {
+#nav>a.router-link-active {
     background-image: url("@/assets/active-tab.svg");
 }
 

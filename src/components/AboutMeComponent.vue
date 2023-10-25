@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-    <div  v-if="store.tab=='about'"  id="about">
+    <div  id="about">
         <h1 class="top">About Me</h1>
         <div class="tab">
             <h3>name: {{ store.user.name }}</h3>
