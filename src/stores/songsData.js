@@ -5,9 +5,17 @@ const userDefaults = {
     surname: "Pērkons",
     code: "IT21011",
     login: false,
+    lastLogin: []
 }
 
 export const store = reactive({
+    aboutForm:{
+        active: false
+    },
+    songListData:{
+        filterItem: "None"
+    },
+
     user: {
         ...userDefaults,
     },
@@ -15,7 +23,7 @@ export const store = reactive({
     
     logInUser() {
         this.user.login = true;
-        this.user.lastLogin = this.getFormattedDate();
+        this.user.lastLogin.push( this.getFormattedDate());
     },
 
     getFormattedDate() {
@@ -26,7 +34,7 @@ export const store = reactive({
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
 
-        return `${day}/${month}/${year} - ${hours}:${minutes}`;
+        return `${day}.${month}.${year} - ${hours}:${minutes}`;
     },
 
     resetUserProperties() {

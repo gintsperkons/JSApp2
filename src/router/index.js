@@ -13,7 +13,7 @@ const routes = [
 
 },
     { path: '/home', component: HomeComponent },
-    { path: '/about', component: AboutMeComponent },
+    { path: '/about-me', component: AboutMeComponent },
 ]
 
 
@@ -30,6 +30,9 @@ router.beforeEach((to,from)=>{
     }
     if (!store.user.login) {
         return "/"
+    }
+    if (store.user.login && to.fullPath == "/") {
+        return "/home"
     }
 })
 

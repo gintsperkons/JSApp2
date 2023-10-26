@@ -1,5 +1,5 @@
 <script>
-//headercomponent import from global components
+
 
 
 
@@ -15,20 +15,17 @@ export default {
 </script>
 
 <template>
-  <HeaderComponent />
-  <div id="base">
     <div id="text">We
       <div class="red">Love</div> Music <div id="annotation">Powered by
         <div class="green">spotify Api</div>
       </div>
 
     </div>
-  </div>
 </template>
 
 
 <style>
-#app {
+#base.loggedOut {
   background: url("@/assets/d68e13334b38b3619645510296460da5.jpeg");
   background-size: cover;
   background-repeat: no-repeat;

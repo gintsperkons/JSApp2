@@ -1,15 +1,26 @@
 <script>
+import { store } from "./stores/songsData.js";
 
 export default {
   data() {
     return {
+      store
     };
   },
 };
 </script>
 
 <template>
-  <router-view></router-view>
+  <HeaderComponent />
+  <div id="base" :class="{ loggedOut: !store.user.login }">
+    <router-view v-if="!store.user.login"></router-view>
+    <div :class="{ logout: !store.user.login }" id="body">
+      <NavComponent />
+      <div id="page" v-if="store.user.login">
+        <router-view></router-view>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
@@ -18,7 +29,7 @@ export default {
   --text-white-80: #ffffffcc;
   --text-white-70: #ffffffb2;
   --text-white-50: #ffffff80;
-  --text-I: #fb0048;
+  --text-important: #fb0048;
   --text-important-20: #fb004833;
   --text-gray: #464157;
   --text-green: #67ff64;
@@ -64,12 +75,7 @@ body {
   height: -webkit-fill-available;
 }
 
-#base.logout {
-  background: url("@/assets/d68e13334b38b3619645510296460da5.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
+
 
 #page {
   width: 100%;

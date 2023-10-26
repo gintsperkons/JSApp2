@@ -1,6 +1,6 @@
 <script>
 
-import {store} from "../stores/songsData.js";
+import { store } from "../stores/songsData.js";
 export default {
 
   data() {
@@ -10,13 +10,14 @@ export default {
   },
   methods: {
     showAlert() {
-      console.log(store)
-      console.log(store.user)
-      console.log(store)
-      let text = store.user.login ? "out" : "in";
-      if (window.confirm("Do you want to log " + text + "?")) {
-        store.user.login = !store.user.login;
-        this.$emit("loginChanged");
+      if (store.user.login) {
+        if (window.confirm("Do you want to logout?")) {
+          store.resetUserProperties();
+        }
+          return;
+      }
+      if (window.confirm("Do you want to login?")) {
+        store.logInUser();
       }
     },
     fullName() {
@@ -41,13 +42,13 @@ export default {
       </div>
       <div id="login" v-if="!store.user.login">
         <router-link to="/home">
-        <a @click="showAlert"  >Login</a>
+          <a @click="showAlert">Login</a>
         </router-link>
       </div>
       <div id="logout" v-if="store.user.login">
         <router-link to="/">
-        <a @click="showAlert" >Logout</a>
-      </router-link>
+          <a @click="showAlert">Logout</a>
+        </router-link>
       </div>
     </div>
   </div>
@@ -57,8 +58,8 @@ export default {
 <style>
 .image {
   width: 51px;
-height: 51px;
-flex-shrink: 0;
+  height: 51px;
+  flex-shrink: 0;
 }
 
 .image {
@@ -83,14 +84,15 @@ div.title {
   border-radius: 50px;
   background: var(--base);
   justify-content: center;
-  align-items:center ;
+  align-items: center;
   align-self: center;
   display: flex;
   flex-direction: row-reverse;
-  margin-right:32px;
+  margin-right: 32px;
 }
-#login > a > a { 
-color: var(--button-login-text);
+
+#login>a>a {
+  color: var(--button-login-text);
   text-align: center;
   font-size: 16px;
   font-style: normal;
@@ -106,13 +108,13 @@ color: var(--button-login-text);
   border-radius: 50px;
   background: var(--button-logout-background);
   justify-content: center;
-  align-items:center ;
+  align-items: center;
   align-self: center;
   display: flex;
   flex-direction: row-reverse;
 }
 
-#logout >a > a {
+#logout>a>a {
   color: var(--button-logout-text);
   text-align: center;
   font-size: 16px;
@@ -138,17 +140,17 @@ div.title>h1 {
 
 #header {
   width: 100%;
-height: 71px;
-flex-shrink: 0;
-border-bottom: 1px solid var(--base-border);
-background: var(--base);
+  height: 71px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--base-border);
+  background: var(--base);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-#header.logout{
-background:var(--base-seetrough);
+#header.logout {
+  background: var(--base-seetrough);
 
 }
 
@@ -170,12 +172,12 @@ background:var(--base-seetrough);
 }
 
 .user>.fullName {
-  color:var(--text-white);
-text-align: center;
-font-size: 16px;
-font-style: normal;
-font-weight: 900;
-line-height: normal;
+  color: var(--text-white);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
   margin-left: 5px;
 }
 </style>

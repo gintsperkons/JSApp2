@@ -1,26 +1,33 @@
 <script>
 
+
+
+
 export default {
     data() {
-        return {
-            
-        }
-    }
+        return {};
+    },
 }
 </script>
 
 <template>
-    <div id="home"><h1>Home</h1></div>
+    <div id="home"><h1>Home</h1>
+    <SongListComponent/>
+    </div>
+
 </template>
 
 <style>
-#home {
+div#home {
     width: 75%;
     text-transform: uppercase;
     color:#fff;
+    padding-top: 25px;
+    padding-left: 30px;
 
 }
 #home > h1 {
     font-weight: 900;
+    padding-bottom:40px ;
 }
 </style>

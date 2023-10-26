@@ -1,23 +1,25 @@
 <script>
+
+import {store} from "../stores/songsData.js";
 export default {
     methods: {  
     },
     data() {
         return {
-            
+            store
         }
     }
 }
 </script>
 
 <template>
-    <div id="nav" v-if="store.login">
+    <div id="nav" v-if="store.user.login">
         <router-link to="/home">
             <a id="home">
                 <p>Home</p>
             </a>
         </router-link>
-        <router-link to="/about">
+        <router-link to="/about-me">
             <a id="about">
                 <p>About Me</p>
             </a>
@@ -29,6 +31,7 @@ export default {
 <style>
 #nav {
     padding-top: 20px;
+    padding-left:20px;
 }
 
 #nav>a {
@@ -39,8 +42,8 @@ export default {
     align-items: center;
 }
 
-#nav>a>p {
-    margin-left: 40px;
+#nav>a>a>p {
+    margin-left: 20px;
     color: var(--text-white);
     font-size: 18px;
     font-style: normal;
