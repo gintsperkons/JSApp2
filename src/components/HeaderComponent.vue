@@ -1,6 +1,6 @@
 <script>
 
-import { store } from '../../src/store.js'
+import {store} from "../stores/songsData.js";
 export default {
 
   data() {
@@ -10,12 +10,13 @@ export default {
   },
   methods: {
     showAlert() {
-      var text = store.login ? "out" : "in";
+      console.log(store)
+      console.log(store.user)
+      console.log(store)
+      let text = store.user.login ? "out" : "in";
       if (window.confirm("Do you want to log " + text + "?")) {
-        store.login = !store.login;
+        store.user.login = !store.user.login;
         this.$emit("loginChanged");
-
-        store.loginButtonText = store.login ? "Logout" : "Login";
       }
     },
     fullName() {
@@ -26,7 +27,7 @@ export default {
 </script>
 
 <template>
-  <div id="header" :class="{ loggedIn: store.login }">
+  <div id="header" :class="{ logout: !store.user.login }">
     <div>
       <div class="image"><img src="@/assets/logoWhite.svg" alt="test"></div>
       <div class="title">
@@ -34,15 +35,19 @@ export default {
       </div>
     </div>
     <div>
-      <div v-if="store.login" class="user">
+      <div v-if="store.user.login" class="user">
         <div class="avatar"><img src="@/assets/avatar.svg" alt=""></div>
         <div class="fullName">{{ fullName() }}</div>
       </div>
-      <div id="login">
-        <a @click="showAlert" v-if="!store.login" >{{ store.loginButtonText }}</a>
+      <div id="login" v-if="!store.user.login">
+        <router-link to="/home">
+        <a @click="showAlert"  >Login</a>
+        </router-link>
       </div>
-      <div id="logout">
-        <a @click="showAlert" v-if="store.login">{{ store.loginButtonText }}</a>
+      <div id="logout" v-if="store.user.login">
+        <router-link to="/">
+        <a @click="showAlert" >Logout</a>
+      </router-link>
       </div>
     </div>
   </div>
@@ -71,18 +76,27 @@ div.title {
 
 
 
-a#login {
-  background-color: #7c005d;
-  border: #5e0046 0px solid;
-  border-radius: 25px;
-  width: fit-content;
-  padding: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+#login {
+  width: 99px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: var(--base);
+  justify-content: center;
+  align-items:center ;
   align-self: center;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right:32px;
+}
+#login > a > a { 
+color: var(--button-login-text);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
   text-transform: uppercase;
-  color: #fff;
-  font-weight: 700;
 }
 
 #logout {
@@ -98,7 +112,7 @@ a#login {
   flex-direction: row-reverse;
 }
 
-#logout > a {
+#logout >a > a {
   color: var(--button-logout-text);
   text-align: center;
   font-size: 16px;
@@ -133,6 +147,10 @@ background: var(--base);
   justify-content: space-between;
 }
 
+#header.logout{
+background:var(--base-seetrough);
+
+}
 
 
 .avatar {

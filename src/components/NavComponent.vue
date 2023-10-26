@@ -1,11 +1,10 @@
 <script>
-import { store } from '../../src/store.js'
 export default {
     methods: {  
     },
     data() {
         return {
-            store
+            
         }
     }
 }

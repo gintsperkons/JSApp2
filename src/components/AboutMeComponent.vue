@@ -1,9 +1,8 @@
 <script>
-import { store } from '../../src/store.js'
 export default {
   data() {
     return {
-      store
+      
     }
   }
 }
